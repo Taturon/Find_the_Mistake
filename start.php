@@ -55,5 +55,8 @@ if (isset($post_name)) echo $post_name;
 </p>
 <input type="submit" value="送信">
 </form>
+<p>
+<a href="ranking.php"><button type="button">ランキングページへ</button></a>
+</p>
 </body>
 </html>

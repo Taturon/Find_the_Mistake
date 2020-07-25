@@ -41,7 +41,6 @@ switch ($select) {
 <option value="difficult">難しい(漢字)</option>
 </select>
 <input type="submit" value="表示">
-<a href="start.php"><button type="button">スタートページへ</button></a>
 <table>
 <tr>
 <th>順位</th>
@@ -60,5 +59,8 @@ switch ($select) {
 </tr>
 <?php endforeach; ?>
 </table>
+<p>
+<a href="start.php"><button type="button">スタートページへ</button></a>
+</p>
 </body>
 </html>
