@@ -64,5 +64,6 @@ $stmt->execute([$name, $difficulty, $time, $count]);
 <h2>回答時間: <?php echo $time; ?></h2>
 <h2>リセット回数: <?php echo $count; ?></h2>
 <a href="start.php"><button type="button">スタートページへ</button></a>
+<a href="ranking.php"><button type="button">ランキングページへ</button></a>
 </body>
 </html>
