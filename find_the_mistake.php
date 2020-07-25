@@ -2,13 +2,6 @@
 // セッションの開始
 session_start();
 
-// リセット回数の計測開始
-if (isset($_SESSION['count'])) {
-	$_SESSION['count']++;
-} else {
-	$_SESSION['count'] = 0;
-}
-
 // 送信されたデータの検証
 if (isset($_POST['name'])) {
 
@@ -36,9 +29,16 @@ if (isset($_POST['name']) && isset($_POST['difficulty'])) {
 }
 
 // 無効なアクセスの拒否
-if (empty($_SESSION)) {
+if (empty($_SESSION['difficulty'])) {
 	header('Location:start.php');
 	exit();
+}
+
+// リセット回数の計測開始
+if (isset($_SESSION['count'])) {
+	$_SESSION['count']++;
+} else {
+	$_SESSION['count'] = 0;
 }
 
 // 開始時刻を記録
