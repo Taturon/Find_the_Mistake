@@ -1,35 +1,10 @@
 <?php
-// セッションの開始
+
+// セッションの再開
 session_start();
 
-// 送信されたデータの検証
-if (isset($_POST['name'])) {
-
-	// 変数への代入
-	$_SESSION['post_name'] = $name = $_POST['name'];
-
-	// 名前のバリデーション
-	if (empty(trim($name))) {
-		$_SESSION['error_msg'] = '名前を入力してください(空白は無効です)';
-	} elseif (mb_strlen($name) > 10) {
-		$_SESSION['error_msg'] = '名前は10字以内にしてください';
-	} elseif ($name !== preg_replace('/\A[\x00\s]++|[\x00\s]++\z/u', '', $name)) {
-		$_SESSION['error_msg'] = '名前の前後に空白を入れないでください';
-	}
-
-	if (isset($_SESSION['error_msg'])) {
-		header('Location:start.php');
-	}
-}
-
-// セッション変数への代入
-if (isset($_POST['name']) && isset($_POST['difficulty'])) {
-	$_SESSION['name'] = $_POST['name'];
-	$_SESSION['difficulty'] = $_POST['difficulty'];
-}
-
 // 無効なアクセスの拒否
-if (empty($_SESSION['difficulty'])) {
+if (empty($_SESSION['name']) || empty($_SESSION['difficulty'])) {
 	header('Location:start.php');
 	exit();
 }
