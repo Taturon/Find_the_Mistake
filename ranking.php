@@ -11,18 +11,18 @@ if (isset($_POST['show_method'])) {
 switch ($select) {
 	case 'difficult':
 		$sql = "SELECT * FROM find_the_mistake WHERE difficulty = '難しい(漢字)' ORDER BY time LIMIT 10";
-		$stmt = $db->query($sql);
+		$stmt = $dbh->query($sql);
 		$players = $stmt->fetchAll();
 		break;
 	case 'easy':
 		$sql = "SELECT * FROM find_the_mistake WHERE difficulty = '易しい(絵文字)' ORDER BY time LIMIT 10";
-		$stmt = $db->query($sql);
+		$stmt = $dbh->query($sql);
 		$players = $stmt->fetchAll();
 		break;
 	case 'all':
 	default:
 		$sql = "SELECT * FROM find_the_mistake ORDER BY time LIMIT 10";
-		$stmt = $db->query($sql);
+		$stmt = $dbh->query($sql);
 		$players = $stmt->fetchAll();
 }
 ?>
