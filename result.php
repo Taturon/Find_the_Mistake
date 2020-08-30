@@ -50,12 +50,13 @@ if ($correct === $answer) {
 
 // 正解時のみDBに登録
 if ($flg === 1) {
+
 	// db接続
 	require_once('db_connect.php');
 
 	// 新規登録処理
 	$sql = 'INSERT INTO find_the_mistake (name, difficulty, time, reset) VALUES (?, ?, ?, ?)';
-	$stmt = $db->prepare($sql);
+	$stmt = $dbh->prepare($sql);
 	$stmt->execute([$name, $difficulty, $time, $count]);
 }
 ?>
@@ -66,9 +67,9 @@ if ($flg === 1) {
 <title>間違い探し</title>
 </head>
 <body>
-<h1>結果は...<?php echo $result ?></h1>
-<h2>回答時間: <?php echo $time; ?></h2>
-<h2>リセット回数: <?php echo $count; ?></h2>
+<h1><small>結果は...<?php echo $result ?></small></h1>
+<h2><small>回答時間: <?php echo $time; ?></small></h2>
+<h2><small>リセット回数: <?php echo $count; ?></small></h2>
 <a href="start.php"><button type="button">スタートページへ</button></a>
 <a href="ranking.php"><button type="button">ランキングページへ</button></a>
 </body>
