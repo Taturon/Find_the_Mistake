@@ -1,11 +1,32 @@
 <?php
+
 // セッションの開始
 session_start();
 
-// エラーメッセージがある場合は取得
-if (isset($_SESSION['error_msg']) && isset($_SESSION['post_name'])) {
-	$error_msg = $_SESSION['error_msg'];
-	$post_name = $_SESSION['post_name'];
+// 送信されたデータの検証
+if (isset($_POST['name']) && isset($_POST['difficulty'])) {
+
+	// 変数への代入
+	$name = $_POST['name'];
+
+	// 名前のバリデーション
+	if (empty(trim($name))) {
+		$error_msgs[] = '名前を入力してください(空白は無効です)';
+	} elseif (mb_strlen($name) > 10) {
+		$_SESSION['error_msg'] = '名前は10字以内にしてください';
+	} elseif ($name !== preg_replace('/\A[\p{C}\p{Z}]++|[\p{C}\p{Z}]++\z/u', '', $name)) {
+		$_SESSION['error_msg'] = '名前の前後に空白文字や制御文字を含めないで下さい';
+	}
+
+	// セッション変数への格納と問題表示ページへの遷移
+	if (empty($_SESSION['error_msg'])) {
+		$_SESSION['name'] = $_POST['name'];
+		$_SESSION['difficulty'] = $_POST['difficulty'];
+		header('Location:find_the_mistake.php');
+		exit();
+	} else {
+		$error_msg = $_SESSION['error_msg'];
+	}
 }
 
 // セッション変数の初期化
@@ -15,20 +36,6 @@ if (isset($_COOKIE['PHPSESSID'])) {
 }
 session_destroy();
 
-if (!empty($_POST)) {
-
-	// 変数への代入
-	$name = $_POST['name'];
-
-	// 名前のバリデーション
-	if (empty(trim($name))) {
-		$error_msgs[] = '名前を入力してください(空白は無効です)';
-	} elseif (mb_strlen($name) > 10) {
-		$error_msgs[] = '名前は10字以内にしてください';
-	} elseif ($name !== preg_replace('/\A[\x00\s]++|[\x00\s]++\z/u', '', $name)) {
-		$error_msgs[] = '名前の前後に空白を入れないでください';
-	}
-}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -44,9 +51,9 @@ if (!empty($_POST)) {
 <li><?php echo $error_msg; ?></li>
 </ul><hr>
 <?php endif; ?>
-<form action="find_the_mistake.php" method="POST">
+<form method="POST">
 <label>名前<small> (10字以内)</small><br><input type="text" name="name" required value="<?php
-if (isset($post_name)) echo $post_name;
+if (isset($name)) echo $name;
 ?>"></label>
 <p>
 <span>難易度</span><br>
