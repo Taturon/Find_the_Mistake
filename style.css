@@ -1,0 +1,16 @@
+.table {
+  margin-top: 10px;
+}
+.s-tbl {
+  border-collapse: collapse;
+}
+.s-tbl th, .s-tbl td {
+  border: 1px solid #000;
+  padding: 0.5em;
+}
+.s-tbl tr:nth-child(even) {
+  background: #eee;
+}
+.s-tbl tr:hover {
+  background: #ffffe0;
+}
