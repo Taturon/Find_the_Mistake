@@ -68,6 +68,7 @@ if ($flg === 1) {
 </head>
 <body>
 <h1><small>結果は...<?php echo $result ?></small></h1>
+<h2><small>難易度: <?php echo $difficulty; ?></small></h2>
 <h2><small>回答時間: <?php echo $time; ?></small></h2>
 <h2><small>リセット回数: <?php echo $count; ?></small></h2>
 <a href="start.php"><button type="button">スタートページへ</button></a>
