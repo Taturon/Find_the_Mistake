@@ -16,11 +16,8 @@ if (isset($_SESSION['count'])) {
 	$_SESSION['count'] = 0;
 }
 
-// 開始時刻を記録
-$_SESSION['start_time'] = microtime(true);
-
 // ターゲット配列の設定
-if ($_SESSION['difficulty'] === '難しい(漢字)') {
+if ($_SESSION['difficulty'] === '難しい（漢字）') {
 	$chars = [
 		['猫', '描'],
 		['犬', '大'],
@@ -76,6 +73,10 @@ $key = range(0, 9);
 $key1 = array_rand($key);
 $key2 = array_rand($key);
 $targets[$key1][$key2] = $correct;
+
+// 開始時刻を記録
+$_SESSION['start_time'] = microtime(true);
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
