@@ -4,28 +4,27 @@
 session_start();
 
 // 送信されたデータの検証
-if (isset($_POST['name']) && isset($_POST['difficulty'])) {
+if (isset($_POST['name'], $_POST['difficulty'])) {
 
 	// 変数への代入
 	$name = $_POST['name'];
+	$difficulty = $_POST['difficulty'];
 
 	// 名前のバリデーション
 	if (empty(trim($name))) {
-		$error_msgs[] = '名前を入力してください(空白は無効です)';
+		$error_msg = '名前に空白は無効です';
 	} elseif (mb_strlen($name) > 10) {
-		$_SESSION['error_msg'] = '名前は10字以内にしてください';
+		$error_msg = '名前は10字以内にしてください';
 	} elseif ($name !== preg_replace('/\A[\p{C}\p{Z}]++|[\p{C}\p{Z}]++\z/u', '', $name)) {
-		$_SESSION['error_msg'] = '名前の前後に空白文字や制御文字を含めないで下さい';
+		$error_msg = '名前の前後に空白文字や制御文字を含めないで下さい';
 	}
 
 	// セッション変数への格納と問題表示ページへの遷移
-	if (empty($_SESSION['error_msg'])) {
-		$_SESSION['name'] = $_POST['name'];
-		$_SESSION['difficulty'] = $_POST['difficulty'];
+	if (empty($error_msg)) {
+		$_SESSION['name'] = $name;
+		$_SESSION['difficulty'] = $difficulty;
 		header('Location:find_the_mistake.php');
 		exit();
-	} else {
-		$error_msg = $_SESSION['error_msg'];
 	}
 }
 
@@ -57,10 +56,14 @@ if (isset($name)) echo $name;
 ?>"></label>
 <p>
 <span>難易度</span><br>
-<label><input type="radio" name="difficulty" value="易しい(絵文字)" checked>易しい(絵文字)</label>
-<label><input type="radio" name="difficulty" value="難しい(漢字)">難しい(漢字)</label>
+<label><input type="radio" name="difficulty" value="易しい（絵文字）" <?php
+if (empty($difficulty) || isset($difficulty) && $difficulty === '易しい（絵文字）') echo 'checked';
+?>>易しい（絵文字）</label>
+<label><input type="radio" name="difficulty" value="難しい（漢字）" <?php
+if (isset($difficulty) && $difficulty === '難しい（漢字）') echo 'checked';
+?>>難しい（漢字）</label>
 </p>
-<input type="submit" value="送信">
+<input type="submit" value="問題に挑戦!（時間計測が開始されます）">
 </form>
 <p>
 <a href="ranking.php"><button type="button">ランキングページへ</button></a>
