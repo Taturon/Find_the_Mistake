@@ -30,9 +30,7 @@ if (isset($_POST['name'], $_POST['difficulty'])) {
 
 // セッション変数の初期化
 $_SESSION = [];
-if (isset($_COOKIE['PHPSESSID'])) {
-	setcookie('PHPSESSID', '', time() - 1800, '/');
-}
+setcookie(session_name(), '', time() - 1, '/');
 session_destroy();
 
 ?>
