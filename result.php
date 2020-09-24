@@ -59,6 +59,7 @@ if ($flg === 1) {
 	$stmt = $dbh->prepare($sql);
 	$stmt->execute([$name, $difficulty, $time, $count]);
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">

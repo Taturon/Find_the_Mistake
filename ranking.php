@@ -17,8 +17,7 @@ switch ($select) {
 		$sql = "SELECT * FROM find_the_mistake WHERE difficulty = '易しい（絵文字）' ORDER BY time LIMIT 10";
 		break;
 	case 'all':
-	default:
-		$sql = "SELECT * FROM find_the_mistake ORDER BY time LIMIT 10";
+		$sql = 'SELECT * FROM find_the_mistake ORDER BY time LIMIT 10';
 		break;
 }
 $stmt = $dbh->query($sql);
