@@ -80,27 +80,27 @@ $_SESSION['start_time'] = microtime(true);
 ?>
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-<meta charset="UTF-8">
-<title>間違い探し</title>
-</head>
-<body>
-<h1><?php echo html_entity_decode($correct); ?>を見つけよう！</h1>
-<p>
-<small>難易度: <?php echo $_SESSION['difficulty']; ?></small>
-<a href="find_the_mistake.php"><button type="button">分かるか！（リセット）</button></a>
-<a href="start.php"><button type="button">スタートページへ</button></a>
-</p>
-<table>
-<form action="result.php" method="POST">
-<?php foreach ($targets as $target): ?>
-<tr>
-<?php for ($l = 0; $l < count($target); $l++): ?>
-<td><input type="submit" name="answer" value="<?php echo html_entity_decode($target[$l]); ?>"></td>
-<?php endfor; ?>
-</tr>
-<?php endforeach; ?>
-</form>
-</table>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>間違い探し</title>
+	</head>
+	<body>
+		<h1><?= html_entity_decode($correct); ?>を見つけよう！</h1>
+		<p>
+			<small>難易度: <?= $_SESSION['difficulty']; ?></small>
+			<a href="find_the_mistake.php"><button type="button">分かるか！（リセット）</button></a>
+			<a href="start.php"><button type="button">スタートページへ</button></a>
+		</p>
+		<form action="result.php" method="POST">
+			<table>
+				<?php foreach ($targets as $target): ?>
+				<tr>
+					<?php for ($l = 0; $l < count($target); $l++): ?>
+					<td><input type="submit" name="answer" value="<?= html_entity_decode($target[$l]); ?>"></td>
+					<?php endfor; ?>
+				</tr>
+				<?php endforeach; ?>
+			</table>
+		</form>
+	</body>
 </html>
