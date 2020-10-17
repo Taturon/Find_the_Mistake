@@ -60,7 +60,7 @@ for ($i = 0; $i < count($chars); $i++) {
 }
 
 // 正解と選択対象配列を設定
-$correct = html_entity_decode($chars[0][0]);
+$correct = $chars[0][0];
 $_SESSION['correct'] = $correct;
 for ($j = 0; $j <= 19; $j++) {
 	for ($k = 0; $k <= 19; $k++) {
@@ -69,7 +69,7 @@ for ($j = 0; $j <= 19; $j++) {
 }
 
 // 正解のターゲットを選択対象配列に1つだけ挿入
-$key = range(0, 9);
+$key = range(0, 19);
 $key1 = array_rand($key);
 $key2 = array_rand($key);
 $targets[$key1][$key2] = $correct;
@@ -85,7 +85,7 @@ $_SESSION['start_time'] = microtime(true);
 		<title>間違い探し</title>
 	</head>
 	<body>
-		<h1><?= html_entity_decode($correct); ?>を見つけよう！</h1>
+		<h1><?= $correct; ?>を見つけよう！</h1>
 		<p>
 			<small>難易度: <?= $_SESSION['difficulty']; ?></small>
 			<a href="find_the_mistake.php"><button type="button">分かるか！（リセット）</button></a>
@@ -96,7 +96,7 @@ $_SESSION['start_time'] = microtime(true);
 				<?php foreach ($targets as $target): ?>
 				<tr>
 					<?php for ($l = 0; $l < count($target); $l++): ?>
-					<td><input type="submit" name="answer" value="<?= html_entity_decode($target[$l]); ?>"></td>
+					<td><input type="submit" name="answer" value="<?= $target[$l]; ?>"></td>
 					<?php endfor; ?>
 				</tr>
 				<?php endforeach; ?>

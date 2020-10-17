@@ -37,7 +37,7 @@ if (isset($_COOKIE['PHPSESSID'])) {
 session_destroy();
 
 // 回答を変数に格納
-$answer = html_entity_decode($_POST['answer']);
+$answer = $_POST['answer'];
 
 // 正解・不正解によるメッセージの分岐
 if ($correct === $answer) {
