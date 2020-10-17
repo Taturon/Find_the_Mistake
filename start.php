@@ -13,7 +13,7 @@ if (isset($_POST['name'], $_POST['difficulty'])) {
 	// 名前のバリデーション
 	if (empty(trim($name))) {
 		$error_msg = '名前に空白は無効です';
-	} elseif (mb_strlen($name) > 10) {
+	} elseif (mb_strlen($name, 'UTF-8') > 10) {
 		$error_msg = '名前は10字以内にしてください';
 	} elseif ($name !== preg_replace('/\A[\p{C}\p{Z}]++|[\p{C}\p{Z}]++\z/u', '', $name)) {
 		$error_msg = '名前の前後に空白文字や制御文字を含めないで下さい';
