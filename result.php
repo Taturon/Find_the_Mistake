@@ -39,7 +39,7 @@ if ($count > 100) {
 }
 
 // 正解・不正解によるメッセージの分岐
-if ($correct === $answer) {
+if (html_entity_decode($correct) === $answer) {
 	$result = '正解です！';
 	$flg = 1;
 } else {
