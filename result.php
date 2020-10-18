@@ -1,4 +1,5 @@
 <?php
+
 // セッションの開始
 session_start();
 
@@ -13,10 +14,8 @@ $end_time = microtime(true);
 $start_time = $_SESSION['start_time'];
 $time = sprintf('%05.2f', round($end_time - $start_time, 2)) . '秒';
 
-// 回答時間が100秒以上の場合は値を上書き
-if ($time > 100) {
-	$time = '100秒以上';
-}
+// 回答を変数に格納
+$answer = $_POST['answer'];
 
 // セッション変数を変数に格納
 $name = $_SESSION['name'];
@@ -24,20 +23,20 @@ $difficulty = $_SESSION['difficulty'];
 $correct = $_SESSION['correct'];
 $count = sprintf('%02d', $_SESSION['count']) . '回';
 
+// セッションの放棄
+$_SESSION = [];
+setcookie(session_name(), '', time() - 1, '/');
+session_destroy();
+
+// 回答時間が100秒以上の場合は値を上書き
+if ($time > 100) {
+	$time = '100秒以上';
+}
+
 // リセット回数が100回以上の場合は値を上書き
 if ($count > 100) {
 	$count = '100回以上';
 }
-
-// セッション変数の初期化
-$_SESSION = [];
-if (isset($_COOKIE['PHPSESSID'])) {
-	setcookie('PHPSESSID', '', time() - 1800, '/');
-}
-session_destroy();
-
-// 回答を変数に格納
-$answer = $_POST['answer'];
 
 // 正解・不正解によるメッセージの分岐
 if ($correct === $answer) {
