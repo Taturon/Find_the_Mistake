@@ -9,7 +9,7 @@ if (empty($_SESSION) || empty($_POST)) {
 	exit();
 }
 
-//回答時間を算出
+// 回答時間を算出
 $end_time = microtime(true);
 $start_time = $_SESSION['start_time'];
 $time = sprintf('%05.2f', round($end_time - $start_time, 2)) . '秒';
@@ -20,6 +20,7 @@ $answer = $_POST['answer'];
 // セッション変数を変数に格納
 $name = $_SESSION['name'];
 $difficulty = $_SESSION['difficulty'];
+$permission = $_SESSION['permission'];
 $correct = $_SESSION['correct'];
 $count = sprintf('%02d', $_SESSION['count']) . '回';
 
@@ -41,14 +42,12 @@ if ($count > 100) {
 // 正解・不正解によるメッセージの分岐
 if (html_entity_decode($correct) === $answer) {
 	$result = '正解です！';
-	$flg = 1;
 } else {
 	$result = '不正解です。。。';
-	$flg = 0;
 }
 
-// 正解時のみDBに登録
-if ($flg === 1) {
+// 正解かつ許可されていた場合のみDBに登録
+if ($result === '正解です！' && $permission === '許可する') {
 
 	// db接続
 	require_once('db_connect.php');

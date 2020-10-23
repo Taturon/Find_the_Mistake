@@ -4,11 +4,12 @@
 session_start();
 
 // 送信されたデータの検証
-if (isset($_POST['name'], $_POST['difficulty'])) {
+if (isset($_POST['name'], $_POST['difficulty'], $_POST['permission'])) {
 
 	// 変数への代入
 	$name = $_POST['name'];
 	$difficulty = $_POST['difficulty'];
+	$permission = $_POST['permission'];
 
 	// 名前のバリデーション
 	if (empty(trim($name))) {
@@ -23,6 +24,7 @@ if (isset($_POST['name'], $_POST['difficulty'])) {
 	if (empty($error_msg)) {
 		$_SESSION['name'] = $name;
 		$_SESSION['difficulty'] = $difficulty;
+		$_SESSION['permission'] = $permission;
 		header('Location:find_the_mistake.php');
 		exit();
 	}
@@ -58,12 +60,23 @@ session_destroy();
 			<p>
 				<span>難易度</span><br>
 				<label>
-					<input type="radio" name="difficulty" value="易しい（絵文字）"<?php if (empty($difficulty) || isset($difficulty) && $difficulty === '易しい（絵文字）') echo 'checked';?>>
+					<input type="radio" name="difficulty" value="易しい（絵文字）" required <?php if (empty($difficulty) || isset($difficulty) && $difficulty === '易しい（絵文字）') echo 'checked';?>>
 					易しい（絵文字）
 				</label>
 				<label>
-					<input type="radio" name="difficulty" value="難しい（漢字）"<?php if (isset($difficulty) && $difficulty === '難しい（漢字）') echo 'checked';?>>
+					<input type="radio" name="difficulty" value="難しい（漢字）" <?php if (isset($difficulty) && $difficulty === '難しい（漢字）') echo 'checked';?>>
 					難しい（漢字）
+				</label>
+			</p>
+			<p>
+				<span>ランキングへの登録</span><br>
+				<label>
+					<input type="radio" name="permission" value="許可しない" required <?php if (empty($permission) || isset($permission) && $permission === '許可しない') echo 'checked';?>>
+					許可しない
+				</label>
+				<label>
+					<input type="radio" name="permission" value="許可する" <?php if (isset($permission) && $permission === '許可する') echo 'checked';?>>
+					許可する
 				</label>
 			</p>
 			<input type="submit" value="問題に挑戦!（時間計測が開始されます）">

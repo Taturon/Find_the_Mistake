@@ -4,7 +4,7 @@
 session_start();
 
 // 無効なアクセスの拒否
-if (empty($_SESSION['name']) || empty($_SESSION['difficulty'])) {
+if (empty($_SESSION)) {
 	header('Location:start.php');
 	exit();
 }
