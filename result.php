@@ -12,7 +12,7 @@ if (empty($_SESSION) || empty($_POST)) {
 // 回答時間を算出
 $end_time = microtime(true);
 $start_time = $_SESSION['start_time'];
-$time = sprintf('%05.2f', round($end_time - $start_time, 2)) . '秒';
+$time = sprintf('%05.2f', $end_time - $start_time) . '秒';
 
 // 回答を変数に格納
 $answer = $_POST['answer'];
