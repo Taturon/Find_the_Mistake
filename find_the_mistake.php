@@ -88,8 +88,8 @@ $_SESSION['start_time'] = microtime(true);
 		<h1><?= $correct; ?>を見つけよう！</h1>
 		<p>
 			<small>難易度: <?= $_SESSION['difficulty']; ?></small>
-			<a href="find_the_mistake.php"><button type="button">分かるか！（リセット）</button></a>
-			<a href="start.php"><button type="button">スタートページへ</button></a>
+			<button type="button" onclick="location.href='find_the_mistake.php'">分かるか！（リセット）</button>
+			<button type="button" onclick="location.href='start.php'">スタートページへ</button>
 		</p>
 		<form action="result.php" method="POST">
 			<table>

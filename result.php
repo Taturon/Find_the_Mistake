@@ -70,7 +70,7 @@ if ($result === '正解です！' && $permission === '許可する') {
 		<h2><small>難易度: <?= $difficulty; ?></small></h2>
 		<h2><small>回答時間: <?= $time; ?></small></h2>
 		<h2><small>リセット回数: <?= $count; ?></small></h2>
-		<a href="start.php"><button type="button">スタートページへ</button></a>
-		<a href="ranking.php"><button type="button">ランキングページへ</button></a>
+		<button type="button" onclick="location.href='start.php'">スタートページへ</button>
+		<button type="button" onclick="location.href='ranking.php'">ランキングページへ</button>
 	</body>
 </html>

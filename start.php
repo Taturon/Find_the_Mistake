@@ -82,9 +82,7 @@ session_destroy();
 			<input type="submit" value="問題に挑戦!（時間計測が開始されます）">
 		</form>
 		<p>
-			<a href="ranking.php">
-				<button type="button">ランキングページへ</button>
-			</a>
+			<button type="button" onclick="location.href='ranking.php'">ランキングページへ</button>
 		</p>
 	</body>
 </html>
