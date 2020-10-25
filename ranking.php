@@ -3,21 +3,24 @@
 // db接続
 require_once('db_connect.php');
 
-$select = 'all';
-
+// 難易度が選択されていた場合のみ変数に格納
 if (isset($_POST['show_method'])) {
 	$select = $_POST['show_method'];
+} else {
+	$select = 'all';
 }
 
+// 選択された表示形式によってSQL文を分岐
+$sql = 'SELECT * FROM rankings ';
 switch ($select) {
 	case 'difficult':
-		$sql = "SELECT * FROM find_the_mistake WHERE difficulty = '難しい（漢字）' ORDER BY time LIMIT 10";
+		$sql .= "WHERE difficulty = '難しい（漢字）' ORDER BY time LIMIT 10";
 		break;
 	case 'easy':
-		$sql = "SELECT * FROM find_the_mistake WHERE difficulty = '易しい（絵文字）' ORDER BY time LIMIT 10";
+		$sql .= "WHERE difficulty = '易しい（絵文字）' ORDER BY time LIMIT 10";
 		break;
 	case 'all':
-		$sql = 'SELECT * FROM find_the_mistake ORDER BY time LIMIT 10';
+		$sql .= 'ORDER BY time LIMIT 10';
 		break;
 }
 $stmt = $dbh->query($sql);
