@@ -53,7 +53,7 @@ if ($result === '正解です！' && $permission === '許可する') {
 	require_once('db_connect.php');
 
 	// 新規登録処理
-	$sql = 'INSERT INTO find_the_mistake (name, difficulty, time, reset) VALUES (?, ?, ?, ?)';
+	$sql = 'INSERT INTO rankings (name, difficulty, time, reset) VALUES (?, ?, ?, ?)';
 	$stmt = $dbh->prepare($sql);
 	$stmt->execute([$name, $difficulty, $time, $count]);
 }
