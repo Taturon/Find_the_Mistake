@@ -1,14 +1,14 @@
 <?php
 
-// db接続
-require_once('db_connect.php');
-
-// 難易度が選択されていた場合のみ変数に格納
+// 難易度がPOSTされている場合は変数に格納
 if (isset($_POST['show_method'])) {
 	$select = $_POST['show_method'];
 } else {
 	$select = 'all';
 }
+
+// db接続
+require_once('db_connect.php');
 
 // 選択された表示形式によってSQL文を分岐
 $sql = 'SELECT * FROM rankings ';
@@ -36,7 +36,7 @@ $players = $stmt->fetchAll();
 	</head>
 	<body>
 		<h1>回答時間ランキング</h1>
-		<form action="" method="POST">
+		<form method="POST">
 			<select name="show_method" size="1">
 				<option value="all" <?php if ($select === 'all') echo 'selected' ?>>全て</option>
 				<option value="easy" <?php if ($select === 'easy') echo 'selected' ?>>易しい</option>
@@ -58,7 +58,7 @@ $players = $stmt->fetchAll();
 				<tbody>
 					<?php foreach ($players as $key => $player): ?>
 					<tr>
-						<td><?= $key + 1; ?></td>
+						<td><?= ++$key; ?></td>
 						<td><?= $player['name']; ?></td>
 						<td><?= $player['difficulty']; ?></td>
 						<td><?= $player['time']; ?></td>
@@ -68,6 +68,8 @@ $players = $stmt->fetchAll();
 				</tbody>
 			</table>
 		</div>
-		<p><a href="start.php"><button type="button">スタートページへ</button></a></p>
+		<p>
+			<button type="button" onclick="location.href='start.php'">スタートページへ</button>
+		</p>
 	</body>
 </html>
