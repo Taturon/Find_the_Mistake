@@ -69,7 +69,7 @@ session_destroy();
 				</label>
 			</p>
 			<p>
-				<span>ランキングへの登録</span><br>
+				<span>ランキングへの登録<small>（正解だった場合のみ）</small></span><br>
 				<label>
 					<input type="radio" name="permission" value="許可しない" required <?php if (empty($permission) || isset($permission) && $permission === '許可しない') echo 'checked';?>>
 					許可しない
