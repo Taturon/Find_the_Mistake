@@ -33,6 +33,8 @@ $players = $stmt->fetchAll();
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="style.css">
 		<title>間違い探し ランキング</title>
+	  	<link rel="apple-touch-icon" type="image/png" href="/favicon/apple-touch-icon-180x180.png">
+		<link rel="icon" type="image/png" href="/favicon/icon-192x192.png">
 	</head>
 	<body>
 		<h1>回答時間ランキング</h1>

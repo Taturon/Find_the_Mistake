@@ -64,6 +64,8 @@ if ($result === '正解です！' && $permission === '許可する') {
 	<head>
 		<meta charset="UTF-8">
 		<title>間違い探し</title>
+	  	<link rel="apple-touch-icon" type="image/png" href="/favicon/apple-touch-icon-180x180.png">
+		<link rel="icon" type="image/png" href="/favicon/icon-192x192.png">
 	</head>
 	<body>
 		<h1><small>結果は...<?= $result ?></small></h1>
