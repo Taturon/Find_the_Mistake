@@ -1,4 +1,6 @@
-# [Find the Mistake](https://taturon.com/find_the_mistake/start.php)
+# Find the Mistake
+[こちら](https://taturon.com/find_the_mistake/start.php)から遊んで頂けます!
+
 ## 概要
 20×20のボタンの中から指定された文字が表示されたボタンを見つける、シンプルな間違い探しゲームです!
 
@@ -51,7 +53,7 @@
 - MySQL Ver 14.14 Distrib 5.6.44
 
 ## 各ファイルの説明
-メインとなる**5つ**と補助的な**2つ**の合計**7つ**を作成しました。そこまで数が多くないのとファイル名のみ（相対パス）で参照できるようにする為、全て**同一ディレクトリ内に配置**します。
+メインとなる**5つ**と補助的な**2つ**の合計**7つ**を作成しました。そこまで数が多くないのとファイル名のみ（相対パス）で参照できるようにする為、全て**同一ディレクトリ内に配置**しております。
 
 ### メインファイル
 - **start.php**
@@ -77,4 +79,4 @@
 
 ---
 
-こちらのQiita記事[「HTML・PHP・MySQLだけで作る間違い探しゲーム」](https://qiita.com/_Taturon_/items/5a8fb0f179f7ede6a60c)でも解説しています。
+こちらのQiita記事「[HTML・PHP・MySQLだけで作る間違い探しゲーム](https://qiita.com/_Taturon_/items/5a8fb0f179f7ede6a60c)」でも解説しています。
